@@ -5,10 +5,11 @@ const Style = {
     GrayMedium: "#8E8E93",
     Shadow: {
         btn: {
-            shadowColor: '#0000001C',
+            shadowColor: '#000', // 阴影颜色
             shadowOffset: { width: 0, height: 18 },
             shadowOpacity: 0.11,
-            shadowRadius: 100,
+            shadowRadius: 30,
+            elevation: 5
         }
     }
 }
