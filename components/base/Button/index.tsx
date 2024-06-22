@@ -1,27 +1,46 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View, GestureResponderEvent, ViewStyle } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View, GestureResponderEvent, ViewStyle, Image, ImageSourcePropType } from 'react-native';
 import { noFunc } from '../../../Common/utils';
 import { Style } from '../../../Common/styles';
 
 export const enum BtnType {
-  primary = "primary",
-  second = 'second'
+  primary = 'weChat',
+  second = 'phone'
 }
+
+/**
+ * Icon
+ */
+export const enum BtnIcon {
+  weChat = "weChat",
+  phone = "phone",
+}
+
 type propsType = {
   title: string,
   type?: BtnType,
   isDisabled?: boolean,
   style?: ViewStyle,
+  icon?: BtnIcon,
+  iconPos?: 'left' | 'right',
   onClick?: (event: GestureResponderEvent) => void,
 }
 
 const CustomButton = (props: propsType) => {
-  const { title, style = {}, type = BtnType.primary, isDisabled = false } = props;
+  const {
+    title,
+    style = {},
+    type = BtnType.primary,
+    isDisabled = false,
+    icon = null,
+    iconPos = 'left'
+  } = props;
   let { onClick = noFunc } = props;
   const [isHovered, setIsHovered] = useState(false);
   // 禁用点击
   if (isDisabled) onClick = noFunc;
 
+  const hasIcon = !!icon;
   const handlePressIn = () => {
     if (isDisabled) return;
     setIsHovered(true);
@@ -69,6 +88,14 @@ const CustomButton = (props: propsType) => {
       return styles.hoverText;;
     } else return {};
   })();
+
+  const iconSource = (() => {
+    if (!hasIcon) return;
+    switch (icon) {
+      case BtnIcon.weChat: return require("../../../Assets/Images/Icon/wechat.png");
+      case BtnIcon.phone: return require("../../../Assets/Images/Icon/phone.png");
+    }
+  })();
   return (
     <TouchableOpacity
       onPressIn={handlePressIn}
@@ -84,10 +111,18 @@ const CustomButton = (props: propsType) => {
           style
         ]}
       >
+        {
+          iconSource && iconPos === 'left' 
+            && <Image style={styles.icon} source={iconSource} />
+        }
         <Text style={[
           styles.text,
           statusTextStyle
         ]}>{title}</Text>
+        {
+          iconSource && iconPos === 'right' 
+            && <Image style={styles.icon} source={iconSource} />
+        }
       </View>
     </TouchableOpacity>
   );
@@ -104,10 +139,16 @@ const styles = StyleSheet.create({
     backgroundColor: Style.WhiteLight,
     borderRadius: 100,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    gap: 7,
+    flexDirection: 'row'
   },
   primaryBtn: {
     ...Style.Shadow.btn
+  },
+  icon: {
+    width: 22,
+    height: 22
   },
   secondBtn: {
     borderColor: Style.BlackDark,

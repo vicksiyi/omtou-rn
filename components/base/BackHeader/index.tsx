@@ -20,7 +20,7 @@ const BackHeader = (props: propsType) => {
                     style={{
                         width: 35,
                         height: 35,
-                        display: !canGoBack ? 'none' : 'flex'
+                        display: !true ? 'none' : 'flex'
                     }}
                 />
             </TouchableOpacity>
