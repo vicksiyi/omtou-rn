@@ -15,7 +15,7 @@ import {
 import {
   Colors
 } from 'react-native/Libraries/NewAppScreen';
-import Show from './Page/First/Show';
+import Start from './Page/First/Start';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -27,7 +27,7 @@ function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <Show></Show>
+      <Start></Start>
     </SafeAreaView>
   );
 }

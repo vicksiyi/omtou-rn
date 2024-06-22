@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text, StyleSheet, View, GestureResponderEvent } from 'react-native';
-import { noFunc } from '../../../common/utils';
-import { Style } from '../../../common/styles';
+import { TouchableOpacity, Text, StyleSheet, View, GestureResponderEvent, ViewStyle } from 'react-native';
+import { noFunc } from '../../../Common/utils';
+import { Style } from '../../../Common/styles';
 
 export const enum BtnType {
   primary = "primary",
@@ -11,11 +11,12 @@ type propsType = {
   title: string,
   type?: BtnType,
   isDisabled?: boolean,
-  onClick?: (event: GestureResponderEvent) => void
+  style?: ViewStyle,
+  onClick?: (event: GestureResponderEvent) => void,
 }
 
 const CustomButton = (props: propsType) => {
-  const { title, type = BtnType.primary, isDisabled = false } = props;
+  const { title, style = {}, type = BtnType.primary, isDisabled = false } = props;
   let { onClick = noFunc } = props;
   const [isHovered, setIsHovered] = useState(false);
   // 禁用点击
@@ -79,7 +80,8 @@ const CustomButton = (props: propsType) => {
         style={[
           styles.btn,
           typeStyle,
-          statusStyle
+          statusStyle,
+          style
         ]}
       >
         <Text style={[
@@ -100,8 +102,6 @@ const styles = StyleSheet.create({
     width: 200,
     height: 58,
     backgroundColor: Style.WhiteLight,
-    paddingVertical: 18,
-    paddingHorizontal: 64,
     borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center'
