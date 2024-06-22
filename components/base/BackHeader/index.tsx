@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
     container: {
         height: 99,
         width: "100%",
-        paddingTop: 40,
-        paddingLeft: 32,
-        paddingBottom: 24
+        marginTop: 24,
+        paddingHorizontal: 24,
+        paddingVertical: 10
     }
 });
 
