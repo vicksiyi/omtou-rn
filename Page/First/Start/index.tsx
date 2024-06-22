@@ -4,6 +4,8 @@ import { Style } from '../../../Common/styles';
 import Button, { BtnType } from '../../../Components/Base/Button';
 import H1 from '../../../Components/Base/Text/H1';
 import Small from '../../../Components/Base/Text/Small';
+import { Dimensions } from 'react-native';
+const { width: deviceWidth } = Dimensions.get('window');
 
 function Start(): React.JSX.Element {
     const [modalVisible, setModalVisible] = useState(false);
@@ -12,7 +14,7 @@ function Start(): React.JSX.Element {
         flex: 1
     };
     return (
-        <SafeAreaView style={backgroundStyle}>
+        <View style={backgroundStyle}>
             <View style={styles.container}>
                 <View style={styles.textBox}>
                     <Text style={styles.text}>
@@ -55,7 +57,7 @@ function Start(): React.JSX.Element {
                     </View>
                 </View>
             </Modal>
-        </SafeAreaView>
+        </View>
     );
 }
 
@@ -90,15 +92,17 @@ const styles = StyleSheet.create({
     },
     modal: {
         position: 'absolute',
-        bottom: 26,
+        bottom: 0,
+        width: deviceWidth,
         height: 353,
         backgroundColor: '#FFF',
         shadowColor: "rgba(0, 0, 0, 0.11)",
         shadowRadius: 15,
         borderRadius: 15,
-        paddingHorizontal: 68,
         paddingTop: 60,
-        paddingBottom: 26
+        paddingBottom: 26,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     modelContent: {
         height: 267,
