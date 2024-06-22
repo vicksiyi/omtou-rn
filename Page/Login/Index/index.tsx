@@ -5,10 +5,12 @@ import { Style } from '../../../Common/styles';
 import H2 from '../../../Components/Base/Text/H2';
 import Button, { BtnIcon } from '../../../Components/Base/Button';
 import TextLink from '../../../Components/Base/Text/TextLink';
+import { useNavigation } from '@react-navigation/native';
 
 type propsType = {}
 
 const Login = (props: propsType) => {
+    const navigation = useNavigation();
     const { } = props;
     const backgroundStyle = {
         backgroundColor: Style.GrayLight,
@@ -16,7 +18,6 @@ const Login = (props: propsType) => {
     };
     return (
         <View style={backgroundStyle}>
-            <BackHeader></BackHeader>
             <View style={styles.container}>
                 <View style={{ gap: 40 }}>
                     <View style={styles.title}>
@@ -27,7 +28,9 @@ const Login = (props: propsType) => {
                         <Button title='微信注册' icon={BtnIcon.weChat} iconPos='right'></Button>
                     </View>
                 </View>
-                <TextLink content='服務條款及隱私權政策'></TextLink>
+                <TextLink content='服務條款及隱私權政策' onClick={()=>{
+                    navigation.navigate('Privacy');
+                }}></TextLink>
             </View>
         </View>
     );
@@ -36,7 +39,7 @@ const Login = (props: propsType) => {
 // 样式
 const styles = StyleSheet.create({
     container: {
-        marginTop: 40,
+        marginTop: 139,
         alignItems: 'center',
         justifyContent: 'center',
         gap: 16

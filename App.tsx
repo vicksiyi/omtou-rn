@@ -15,31 +15,63 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Show from './Page/First/Show';
 import Login from './Page/Login/Index';
 import Start from './Page/First/Start';
+import Privacy from './Page/Login/Privacy';
+import BackHeader from './Components/Base/BackHeader';
 
 const Stack = createStackNavigator();
 
+/**
+ * 返回上一页配置
+ */
+const backHeaderOption = {
+  headerLeft: () => <BackHeader />,
+  headerStyle: {
+    elevation: 0,
+  },
+  headerShown: true,
+  headerTransparent: true,
+  headerTitle: ''
+}
+
+/**
+ * 页面配置
+ */
+const pages = [
+  {
+    name: 'Show',
+    component: Show,
+    option: { headerShown: false }
+  },
+  {
+    name: 'Start',
+    component: Start,
+    option: { headerShown: false }
+  },
+  {
+    name: 'Login',
+    component: Login,
+    option: backHeaderOption
+  },
+  {
+    name: 'Privacy',
+    component: Privacy,
+    option: backHeaderOption
+  },
+];
+
 function App(): React.JSX.Element {
-  const curScreen = 'Show';
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName={curScreen}
+        initialRouteName={pages[0].name}
       >
-        <Stack.Screen
-          name="Show"
-          component={Show}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Start"
-          component={Start}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ headerShown: false }}
-        />
+        {
+          pages.map(item => <Stack.Screen
+            name={item.name}
+            component={item.component}
+            options={item.option}
+          />)
+        }
       </Stack.Navigator>
     </NavigationContainer>
   );
