@@ -17,6 +17,7 @@ import Login from './Page/Login/Index';
 import Start from './Page/First/Start';
 import Privacy from './Page/Login/Privacy';
 import BackHeader from './Components/Base/BackHeader';
+import PhoneNumberLogin from './Page/Login/Phone';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,11 @@ const pages = [
     component: Privacy,
     option: backHeaderOption
   },
+  {
+    name: 'PhoneNumberLogin',
+    component: PhoneNumberLogin,
+    option: backHeaderOption
+  }
 ];
 
 function App(): React.JSX.Element {
