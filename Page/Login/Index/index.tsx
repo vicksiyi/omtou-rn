@@ -5,12 +5,13 @@ import { Style } from '../../../Common/styles';
 import H2 from '../../../Components/Base/Text/H2';
 import Button, { BtnIcon } from '../../../Components/Base/Button';
 import TextLink from '../../../Components/Base/Text/TextLink';
-import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type propsType = {}
 
 const Login = (props: propsType) => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const { } = props;
     const backgroundStyle = {
         backgroundColor: Style.GrayLight,

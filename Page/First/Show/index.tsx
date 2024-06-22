@@ -1,8 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 function Show(): React.JSX.Element {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const backgroundStyle = {
         backgroundColor: "#FFFFFF",
         flex: 1

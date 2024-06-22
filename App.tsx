@@ -66,7 +66,8 @@ function App(): React.JSX.Element {
         initialRouteName={pages[0].name}
       >
         {
-          pages.map(item => <Stack.Screen
+          pages.map((item, index) => <Stack.Screen
+            key={index}
             name={item.name}
             component={item.component}
             options={item.option}

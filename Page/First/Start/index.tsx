@@ -5,11 +5,12 @@ import Button, { BtnType } from '../../../Components/Base/Button';
 import H1 from '../../../Components/Base/Text/H1';
 import Small from '../../../Components/Base/Text/Small';
 import { Dimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 const { width: deviceWidth } = Dimensions.get('window');
 
 function Start(): React.JSX.Element {
-    const navigation = useNavigation();
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const [modalVisible, setModalVisible] = useState(false);
     const backgroundStyle = {
         backgroundColor: Style.BlackDark,
