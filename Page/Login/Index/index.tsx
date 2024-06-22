@@ -25,7 +25,9 @@ const Login = (props: propsType) => {
                         <H2 content="注册账户以继续使用"></H2>
                     </View>
                     <View style={styles.loginType}>
-                        <Button title='本机号码注册' icon={BtnIcon.phone} iconPos='right'></Button>
+                        <Button title='本机号码注册' onClick={()=>{
+                            navigation.navigate('PhoneNumberLogin');
+                        }} icon={BtnIcon.phone} iconPos='right'></Button>
                         <Button title='微信注册' icon={BtnIcon.weChat} iconPos='right'></Button>
                     </View>
                 </View>
