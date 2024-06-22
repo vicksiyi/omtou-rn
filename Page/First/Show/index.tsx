@@ -9,7 +9,7 @@ function Show(): React.JSX.Element {
     };
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigation.navigate('Start');
+            navigation.replace('Start');
         }, 1000);
         return () => {
             clearTimeout(timer);
