@@ -7,31 +7,41 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  View,
-  useColorScheme,
+  StyleSheet
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
-import Start from './Page/First/Start';
 import Show from './Page/First/Show';
+import Login from './Page/Login/Index';
+import Start from './Page/First/Start';
+
+const Stack = createStackNavigator();
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-    flex: 1
-  };
-
+  const curScreen = 'Show';
   return (
-    <View style={backgroundStyle}>
-      {/* <Show></Show> */}
-      <Start></Start>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName={curScreen}
+      >
+        <Stack.Screen
+          name="Show"
+          component={Show}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Start"
+          component={Start}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 

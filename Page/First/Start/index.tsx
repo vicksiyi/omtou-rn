@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { Style } from '../../../Common/styles';
 import Button, { BtnType } from '../../../Components/Base/Button';
 import H1 from '../../../Components/Base/Text/H1';
 import Small from '../../../Components/Base/Text/Small';
 import { Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 const { width: deviceWidth } = Dimensions.get('window');
 
 function Start(): React.JSX.Element {
+    const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
     const backgroundStyle = {
         backgroundColor: Style.BlackDark,
@@ -23,7 +25,7 @@ function Start(): React.JSX.Element {
                 </View>
             </View>
             <View style={styles.bottomBtn}>
-                <Button title="开启探索" onClick={()=>{
+                <Button title="开启探索" onClick={() => {
                     setModalVisible(true);
                 }}></Button>
             </View>
@@ -48,7 +50,10 @@ function Start(): React.JSX.Element {
                             <View style={styles.btnContainer}>
                                 <Button title="同意" style={{
                                     width: 150
-                                }} onClick={() => setModalVisible(!modalVisible)} />
+                                }} onClick={() => {
+                                    navigation.navigate('Login');
+                                    setModalVisible(false);
+                                }} />
                                 <Button title="不同意" style={{
                                     width: 150
                                 }} type={BtnType.second} onClick={() => setModalVisible(!modalVisible)} />
@@ -88,7 +93,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        
+
     },
     modal: {
         position: 'absolute',
