@@ -1,7 +1,7 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
-import { Alert, AppState, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Alert, AppState, Image, StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
 import { Style } from '../../Common/styles';
 import H2 from '../../Components/Base/Text/H2';
 import { Asset, launchImageLibrary } from 'react-native-image-picker';
@@ -10,10 +10,11 @@ import Button from '../../Components/Base/Button';
 function WelComeSetAvatar(): React.JSX.Element {
     const defaultAvatar = require('../../Assets/Images/defaultAvatar.png');
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-    const [avatar, setAvatar] = useState<Asset>(defaultAvatar);
-    const backgroundStyle = {
+    const [avatar, setAvatar] = useState<string>();
+    const backgroundStyle: ViewStyle = {
         backgroundColor: Style.GrayLightMedium,
-        flex: 1
+        flex: 1,
+        alignItems: 'center'
     };
 
     const selectImage = () => {
@@ -28,7 +29,7 @@ function WelComeSetAvatar(): React.JSX.Element {
                 return false;
             }
             const image = res?.assets?.[0];
-            setAvatar(image?.uri ?? defaultAvatar);
+            setAvatar(image?.uri);
         }).catch(err => {
             Alert.alert('未知错误', err);
         });
@@ -46,17 +47,19 @@ function WelComeSetAvatar(): React.JSX.Element {
                 </View>
                 <View style={{ marginTop: 164, gap: 16 }}>
                     <TouchableOpacity style={styles.avatar} onPress={selectImage}>
-                        <Image source={avatar} style={styles.avatar}></Image>
+                        <Image source={avatar ? { uri: avatar } : defaultAvatar} style={styles.avatar}></Image>
                     </TouchableOpacity>
                 </View>
-                <View style={{
-                    position: 'absolute',
-                    bottom: 64
-                }}>
-                    <Button title="确定" onClick={()=>{
-                        navigation.navigate('WelComeSetAvatar');
-                    }}></Button>
-                </View>
+            </View>
+            <View style={{
+                position: 'absolute',
+                bottom: 64
+            }}>
+                <Button title="确定" onClick={() => {
+                    navigation.navigate('CreateAccountDone', {
+                        avatar
+                    });
+                }}></Button>
             </View>
         </View>
     );

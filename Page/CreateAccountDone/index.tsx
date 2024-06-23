@@ -1,4 +1,4 @@
-import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
@@ -15,6 +15,8 @@ function CreateAccountDone(): React.JSX.Element {
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const [inputVal, setInputVal] = useState('');
     const [isError, setIsError] = useState(false);
+    const route = useRoute();
+    const { avatar } = (route.params || {}) as any;
     const backgroundStyle = {
         backgroundColor: Style.GrayLightMedium,
         flex: 1
@@ -46,7 +48,7 @@ function CreateAccountDone(): React.JSX.Element {
                         }} numberOfLines={2}></H2>
                     </View>
                 </View>
-                <Image source={defaultAvatar} style={styles.avatar}></Image>
+                <Image source={avatar ? { uri: avatar } : defaultAvatar} style={styles.avatar}></Image>
                 <Text style={{
                     fontSize: 14,
                     fontWeight: 600
@@ -83,7 +85,8 @@ const styles = StyleSheet.create({
     },
     avatar: {
         width: 150,
-        height: 150
+        height: 150,
+        borderRadius: 150
     },
     shareList: {
         flexDirection: 'row',
