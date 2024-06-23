@@ -171,6 +171,7 @@ const BottomBox = (props: propsType) => {
             <View style={styles.bottomContainer}>
                 <Button title='下一步' onClick={() => {
                     if (curIndex >= cardList.length - 1) {
+                        navigation.navigate('WelComeSetName');
                         return;
                     }
                     setCurIndex(curIndex + 1);

@@ -22,6 +22,7 @@ import BackHeader from './Components/Base/BackHeader';
 import PhoneNumberLogin from './Page/Login/Phone';
 import VerifyPhoneCode from './Page/Login/VerifyPhoneCode';
 import WelCome from './Page/WelCome';
+import WelComeSetName from './Page/WelComeSetName';
 
 /**
  * fix warning
@@ -83,6 +84,11 @@ const pages = [
     name: 'WelCome',
     component: WelCome,
     option: { headerShown: false }
+  },
+  {
+    name: 'WelComeSetName',
+    component: WelComeSetName,
+    option: backHeaderOption
   }
 ];
 
