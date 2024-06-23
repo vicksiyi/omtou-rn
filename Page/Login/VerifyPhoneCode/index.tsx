@@ -29,6 +29,10 @@ const VerifyPhoneCode = () => {
         isError = verifyStatus === VerifyStatus.error;
     }, [verifyStatus])
 
+    useEffect(() => {
+        refs[0]?.current?.focus();
+    }, [])
+
     const initTime = () => {
         setReSendTime(RE_SEND_TIME);
     }
@@ -46,6 +50,16 @@ const VerifyPhoneCode = () => {
             clearInterval(time);
         }
     }, [isWait, reSendTime]);
+
+    // 提交验证
+    const submitFunc = () => {
+        const codeStr = code.join('');
+        if (codeStr === '0000') setVerifyStatus(VerifyStatus.error);
+        else {
+            setVerifyStatus(VerifyStatus.none);
+            Alert.alert(`提交验证${codeStr}`);
+        }
+    }
 
     useEffect(() => {
         if (curFocus === -1) Keyboard.dismiss();
@@ -90,20 +104,15 @@ const VerifyPhoneCode = () => {
                                 keyboardType="numeric"
                                 maxLength={1}
                                 selectTextOnFocus={true}
-                                onSubmitEditing={() => {
-                                    const codeStr = code.join('');
-                                    if (codeStr === '0000') setVerifyStatus(VerifyStatus.error);
-                                    else {
-                                        setVerifyStatus(VerifyStatus.none);
-                                        Alert.alert(`提交验证${codeStr}`);
-                                    }
-                                }}
+                                onSubmitEditing={submitFunc}
                                 onChangeText={(val: string) => {
                                     if (val.length == 1) {
                                         code[index] = val;
                                         setCode(code);
                                         if (index !== code.length - 1) {
                                             setCurFocus(index + 1);
+                                        } else {
+                                            submitFunc();
                                         }
                                     } else if (val.length === 0) {
                                         code[index] = val;

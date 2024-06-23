@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, StyleSheet, Alert, Image } from 'react-native';
 import H2 from '../../../Components/Base/Text/H2';
 import { Style } from '../../../Common/styles';
@@ -14,6 +14,11 @@ const PhoneNumberLogin = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [countryCallingCode, setCountryCallingCode] = useState('+86');
     const [isValidPhone, setIsValidPhone] = useState(false);
+    const phoneRef = useRef<TextInput>(null);
+
+    useEffect(() => {
+        phoneRef?.current?.focus();
+    }, [])
 
     return (
         <View style={styles.container}>
@@ -28,10 +33,12 @@ const PhoneNumberLogin = () => {
                     </View>
                     <View style={styles.inputBox}>
                         <TextInput
+                            ref={phoneRef}
                             style={styles.input}
                             value={phoneNumber}
                             keyboardType="numeric"
                             maxLength={11}
+                            selectTextOnFocus={true}
                             onChangeText={(val: string) => {
                                 setPhoneNumber(val);
                                 if (isValidPhoneNumber(val)) {
