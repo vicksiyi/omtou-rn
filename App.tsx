@@ -7,7 +7,9 @@
 
 import React from 'react';
 import {
-  StyleSheet
+  StyleSheet,
+  LogBox,
+  Animated
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -20,8 +22,15 @@ import BackHeader from './Components/Base/BackHeader';
 import PhoneNumberLogin from './Page/Login/Phone';
 import VerifyPhoneCode from './Page/Login/VerifyPhoneCode';
 
-const Stack = createStackNavigator();
+/**
+ * fix warning
+ * [Sending `onAnimatedValueUpdate` with no listeners registered.]
+ */
+const av = new Animated.Value(0);
+av.addListener(() => { return });
 
+
+const Stack = createStackNavigator();
 /**
  * 返回上一页配置
  */
