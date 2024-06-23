@@ -5,6 +5,7 @@ import { Alert, AppState, Image, StyleSheet, TouchableOpacity, View } from 'reac
 import { Style } from '../../Common/styles';
 import H2 from '../../Components/Base/Text/H2';
 import { Asset, launchImageLibrary } from 'react-native-image-picker';
+import Button from '../../Components/Base/Button';
 
 function WelComeSetAvatar(): React.JSX.Element {
     const defaultAvatar = require('../../Assets/Images/defaultAvatar.png');
@@ -47,6 +48,14 @@ function WelComeSetAvatar(): React.JSX.Element {
                     <TouchableOpacity style={styles.avatar} onPress={selectImage}>
                         <Image source={avatar} style={styles.avatar}></Image>
                     </TouchableOpacity>
+                </View>
+                <View style={{
+                    position: 'absolute',
+                    bottom: 64
+                }}>
+                    <Button title="确定" onClick={()=>{
+                        navigation.navigate('WelComeSetAvatar');
+                    }}></Button>
                 </View>
             </View>
         </View>

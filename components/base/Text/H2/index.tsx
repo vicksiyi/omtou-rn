@@ -4,12 +4,13 @@ import { Style } from '../../../../Common/styles';
 
 type propsType = {
     content: string,
-    style?: TextStyle
+    style?: TextStyle,
+    numberOfLines?: number
 }
 
 const CustomH2 = (props: propsType) => {
-    const { content, style = {} } = props;
-    return (<Text style={[styles.text, style]}>{content}</Text>);
+    const { content, style = {}, numberOfLines } = props;
+    return (<Text style={[styles.text, style]} numberOfLines={numberOfLines}>{content}</Text>);
 };
 
 // 样式

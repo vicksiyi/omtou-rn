@@ -24,6 +24,8 @@ import VerifyPhoneCode from './Page/Login/VerifyPhoneCode';
 import WelCome from './Page/WelCome';
 import WelComeSetName from './Page/WelComeSetName';
 import WelComeSetAvatar from './Page/WelComeSetAvatar';
+import CreateAccountDone from './Page/CreateAccountDone';
+import Home from './Page/Home';
 
 /**
  * fix warning
@@ -95,6 +97,16 @@ const pages = [
     name: 'WelComeSetAvatar',
     component: WelComeSetAvatar,
     option: backHeaderOption
+  },
+  {
+    name: 'CreateAccountDone',
+    component: CreateAccountDone,
+    option: backHeaderOption
+  },
+  {
+    name: 'Home',
+    component: Home,
+    option: { headerShown: false }
   }
 ];
 
