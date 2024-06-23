@@ -43,7 +43,6 @@ const VerifyPhoneCode = () => {
             setIsWait(false);
         }
         const time = setTimeout(() => {
-            console.log(reSendTime <= 0, 'reSendTime <= 0', reSendTime);
             setReSendTime(reSendTime - 1);
         }, 1000);
         return () => {
