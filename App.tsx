@@ -21,6 +21,7 @@ import Privacy from './Page/Login/Privacy';
 import BackHeader from './Components/Base/BackHeader';
 import PhoneNumberLogin from './Page/Login/Phone';
 import VerifyPhoneCode from './Page/Login/VerifyPhoneCode';
+import WelCome from './Page/WelCome';
 
 /**
  * fix warning
@@ -77,6 +78,11 @@ const pages = [
     name: 'VerifyPhoneCode',
     component: VerifyPhoneCode,
     option: backHeaderOption
+  },
+  {
+    name: 'WelCome',
+    component: WelCome,
+    option: { headerShown: false }
   }
 ];
 

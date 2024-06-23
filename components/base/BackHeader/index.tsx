@@ -1,23 +1,30 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleProp, TouchableOpacity, ViewStyle } from 'react-native';
 
-type propsType = {}
+type propsType = {
+    onBack?: () => void,
+    style?: StyleProp<ViewStyle>,
+    size?: number
+}
 
 const BackHeader = (props: propsType) => {
-    const { } = props;
     const navigation = useNavigation();
-    const backIcon = require("../../../Assets/Images/Icon/back.png");
     const backClick = () => {
         navigation.goBack();
     }
+    const { onBack = backClick, style = {}, size = 35 } = props;
+    const backIcon = require("../../../Assets/Images/Icon/back.png");
     return (
-        <TouchableOpacity onPress={backClick} style={{ marginLeft: 24 }}>
+        <TouchableOpacity onPress={onBack} style={[
+            { marginLeft: 24 },
+            style
+        ]}>
             <Image
                 source={backIcon}
                 style={{
-                    width: 35,
-                    height: 35
+                    width: size,
+                    height: size
                 }}
             />
         </TouchableOpacity>

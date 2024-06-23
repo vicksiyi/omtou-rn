@@ -5,6 +5,7 @@ const Style = {
     GrayMedium: "#8E8E93",
     GrayLightMedium: "#ECECEC",
     RedLight: "#FF3B2F",
+    MonoMediumDar: "#646464",
     Shadow: {
         btn: {
             shadowColor: '#000', // 阴影颜色

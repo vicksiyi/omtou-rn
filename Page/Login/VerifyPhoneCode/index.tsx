@@ -5,6 +5,8 @@ import { Style } from '../../../Common/styles';
 import Button from '../../../Components/Base/Button';
 import TextLink from '../../../Components/Base/Text/TextLink';
 import Small from '../../../Components/Base/Text/Small';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const RE_SEND_TIME = 60;
 const enum VerifyStatus {
@@ -13,6 +15,7 @@ const enum VerifyStatus {
     error = 'error'
 }
 const VerifyPhoneCode = () => {
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const [code, setCode] = useState(['', '', '', '']);
     const [curFocus, setCurFocus] = useState(-1);
     const [reSendTime, setReSendTime] = useState(RE_SEND_TIME);
@@ -56,7 +59,7 @@ const VerifyPhoneCode = () => {
         if (codeStr === '0000') setVerifyStatus(VerifyStatus.error);
         else {
             setVerifyStatus(VerifyStatus.none);
-            Alert.alert(`提交验证${codeStr}`);
+            navigation.replace('WelCome');
         }
     }
 
