@@ -23,6 +23,7 @@ import PhoneNumberLogin from './Page/Login/Phone';
 import VerifyPhoneCode from './Page/Login/VerifyPhoneCode';
 import WelCome from './Page/WelCome';
 import WelComeSetName from './Page/WelComeSetName';
+import WelComeSetAvatar from './Page/WelComeSetAvatar';
 
 /**
  * fix warning
@@ -88,6 +89,11 @@ const pages = [
   {
     name: 'WelComeSetName',
     component: WelComeSetName,
+    option: backHeaderOption
+  },
+  {
+    name: 'WelComeSetAvatar',
+    component: WelComeSetAvatar,
     option: backHeaderOption
   }
 ];

@@ -45,7 +45,7 @@ function WelComeSetName(): React.JSX.Element {
                             if (!inputVal) setIsError(true);
                             else {
                                 setIsError(false);
-                                Alert.alert('设置成功');
+                                navigation.navigate('WelComeSetAvatar');
                             }
                         }}
                         placeholderTextColor={Style.GrayMedium}
