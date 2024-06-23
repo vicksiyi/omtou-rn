@@ -1,12 +1,15 @@
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Style } from '../../Common/styles';
 import H2 from '../../Components/Base/Text/H2';
+import Small from '../../Components/Base/Text/Small';
 
 function WelComeSetName(): React.JSX.Element {
     const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+    const [inputVal, setInputVal] = useState('');
+    const [isError, setIsError] = useState(false);
     const backgroundStyle = {
         backgroundColor: Style.GrayLightMedium,
         flex: 1
@@ -31,15 +34,28 @@ function WelComeSetName(): React.JSX.Element {
                         }}></H2>
                     </View>
                 </View>
-                <View style={{ marginTop: 47 }}>
+                <View style={{ marginTop: 47, gap: 16 }}>
                     <TextInput
-                        style={styles.input}
+                        style={[
+                            styles.input,
+                            isError ? { borderColor: Style.RedLight } : {}
+                        ]}
                         placeholder='你的名字'
                         onSubmitEditing={() => {
-                            Alert.alert('设置成功');
+                            if (!inputVal) setIsError(true);
+                            else {
+                                setIsError(false);
+                                Alert.alert('设置成功');
+                            }
                         }}
                         placeholderTextColor={Style.GrayMedium}
+                        onChangeText={(val) => setInputVal(val)}
                     ></TextInput>
+                    <Small content="这个用户名已经被使用过了，请换一个:)" style={{
+                        textAlign: 'center',
+                        color: Style.RedLight,
+                        display: isError ? 'flex' : 'none'
+                    }}></Small>
                 </View>
             </View>
         </View>
