@@ -3,6 +3,8 @@ const Style = {
     WhiteLight: "#FFFFFF",
     GrayLight: "#D8D8D8",
     GrayMedium: "#8E8E93",
+    GrayLightMedium: "#ECECEC",
+    RedLight: "#FF3B2F",
     Shadow: {
         btn: {
             shadowColor: '#000', // 阴影颜色

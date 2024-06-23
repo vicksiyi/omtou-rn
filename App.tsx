@@ -18,6 +18,7 @@ import Start from './Page/First/Start';
 import Privacy from './Page/Login/Privacy';
 import BackHeader from './Components/Base/BackHeader';
 import PhoneNumberLogin from './Page/Login/Phone';
+import VerifyPhoneCode from './Page/Login/VerifyPhoneCode';
 
 const Stack = createStackNavigator();
 
@@ -61,6 +62,11 @@ const pages = [
   {
     name: 'PhoneNumberLogin',
     component: PhoneNumberLogin,
+    option: backHeaderOption
+  },
+  {
+    name: 'VerifyPhoneCode',
+    component: VerifyPhoneCode,
     option: backHeaderOption
   }
 ];

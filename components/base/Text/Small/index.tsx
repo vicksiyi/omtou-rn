@@ -1,13 +1,14 @@
 import React from 'react';
-import { Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, TextStyle } from 'react-native';
 
 type propsType = {
-    content: string
+    content: string,
+    style?: TextStyle
 }
 
 const CustomSmall = (props: propsType) => {
-    const { content } = props;
-    return (<Text style={styles.text}>{content}</Text>);
+    const { content, style = {} } = props;
+    return (<Text style={[styles.text, style]}>{content}</Text>);
 };
 
 // 样式

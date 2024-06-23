@@ -5,8 +5,11 @@ import { Style } from '../../../Common/styles';
 import Button from '../../../Components/Base/Button';
 import TextLink from '../../../Components/Base/Text/TextLink';
 import { isValidPhoneNumber } from '../../../Common/utils';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const PhoneNumberLogin = () => {
+    const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
     const china = require("../../../Assets/Images/Icon/china.png");
     const [phoneNumber, setPhoneNumber] = useState('');
     const [countryCallingCode, setCountryCallingCode] = useState('+86');
@@ -47,7 +50,7 @@ const PhoneNumberLogin = () => {
             }}>
                 <View style={{ height: 58 }}></View>
                 <Button title='获取验证码' isDisabled={!isValidPhone} onClick={() => {
-                    Alert.alert('手机号验证');
+                    navigation.navigate('VerifyPhoneCode');
                 }}></Button>
             </View>
             <View style={{
